@@ -1,0 +1,1241 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"api",
+				"api_key"
+			],
+			[
+				"per",
+				"period_id"
+			],
+			[
+				"qua",
+				"quarter_date"
+			],
+			[
+				"stk",
+				"stk_count"
+			],
+			[
+				"re",
+				"response"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"se",
+				"sell_order"
+			],
+			[
+				"pro",
+				"profit_earned"
+			],
+			[
+				"norm",
+				"norm_score"
+			],
+			[
+				"stoc",
+				"R52D_STK_COUNT"
+			],
+			[
+				"R",
+				"R52D_TURNOVER"
+			],
+			[
+				"st",
+				"stock"
+			],
+			[
+				"str",
+				"strategy"
+			],
+			[
+				"St",
+				"Stock"
+			],
+			[
+				"con",
+				"conn_db"
+			],
+			[
+				"ent",
+				"entries2"
+			],
+			[
+				"to",
+				"to_date"
+			],
+			[
+				"fi",
+				"filepath"
+			],
+			[
+				"in",
+				"info"
+			],
+			[
+				"it",
+				"item"
+			],
+			[
+				"sto",
+				"stock_set"
+			],
+			[
+				"stock",
+				"stock_set"
+			],
+			[
+				"row",
+				"rows"
+			],
+			[
+				"eod",
+				"eod_hist"
+			],
+			[
+				"e",
+				"error"
+			],
+			[
+				"ob",
+				"objects"
+			],
+			[
+				"ma",
+				"make_tuple"
+			],
+			[
+				"a",
+				"avg_price"
+			],
+			[
+				"my",
+				"my_order"
+			],
+			[
+				"Empl",
+				"EmployeeFormHelper"
+			],
+			[
+				"Ledger",
+				"LedgerFilter"
+			],
+			[
+				"Led",
+				"LedgerTable"
+			],
+			[
+				"bu",
+				"buy_amt"
+			],
+			[
+				"tas",
+				"task_predict"
+			],
+			[
+				"task_",
+				"task_run"
+			],
+			[
+				"op",
+				"op_cl_period"
+			],
+			[
+				"las",
+				"last_buy_price"
+			],
+			[
+				"cu",
+				"curr_stk"
+			],
+			[
+				"tr",
+				"train_info"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"trai",
+				"train_info"
+			],
+			[
+				"order",
+				"order_count"
+			],
+			[
+				"ord",
+				"order_count"
+			],
+			[
+				"or",
+				"order_count"
+			],
+			[
+				"la",
+				"last_buy_qty"
+			],
+			[
+				"mea",
+				"mean_trade_val"
+			],
+			[
+				"train",
+				"train_stock"
+			],
+			[
+				"final",
+				"final_entries"
+			],
+			[
+				"me",
+				"median"
+			],
+			[
+				"transac",
+				"transact_log"
+			],
+			[
+				"buy",
+				"buy_date"
+			],
+			[
+				"buy_",
+				"last_buy_price"
+			],
+			[
+				"dt",
+				"dt_arr"
+			],
+			[
+				"asser",
+				"assertIn\tfunction"
+			],
+			[
+				"Sched",
+				"SchedulerViewTests"
+			],
+			[
+				"get",
+				"__get_values"
+			],
+			[
+				"s",
+				"symbol\tstatement"
+			],
+			[
+				"__",
+				"__init__\tfunction"
+			],
+			[
+				"fet",
+				"fetchone\tfunction"
+			],
+			[
+				"fix",
+				"fixed_limit"
+			],
+			[
+				"var",
+				"variable_limit_profit"
+			],
+			[
+				"assertGreat",
+				"assertGreaterEqual\tfunction"
+			],
+			[
+				"__c",
+				"__calc_returns"
+			],
+			[
+				"tra",
+				"train_val\tstatement"
+			],
+			[
+				"assert",
+				"assertEqual\tfunction"
+			],
+			[
+				"ris",
+				"risky52d_stk\tmodule"
+			],
+			[
+				"abs",
+				"abstractmethod\tfunction"
+			],
+			[
+				"de",
+				"debug\tfunction"
+			],
+			[
+				"Noe",
+				"None\tinstance"
+			],
+			[
+				"db",
+				"db_rows"
+			],
+			[
+				"is",
+				"is_file_latest"
+			],
+			[
+				"curr",
+				"curr_yr"
+			],
+			[
+				"fil",
+				"filtered_idx"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"nor",
+				"norm_score_arr"
+			],
+			[
+				"sy",
+				"symbol_open"
+			],
+			[
+				"log",
+				"logging"
+			],
+			[
+				"stra",
+				"strategy_info"
+			],
+			[
+				"score",
+				"scores_df"
+			],
+			[
+				"med",
+				"median_df"
+			],
+			[
+				"sum",
+				"sum_median"
+			],
+			[
+				"add",
+				"add_strategy_stk"
+			],
+			[
+				"cl",
+				"cl_52_min"
+			],
+			[
+				"json",
+				"json_out"
+			],
+			[
+				"exc",
+				"execute"
+			],
+			[
+				"oe",
+				"order_row"
+			],
+			[
+				"si",
+				"signal_row"
+			],
+			[
+				"sig",
+				"signal_id"
+			],
+			[
+				"signa",
+				"signal_status"
+			],
+			[
+				"sign",
+				"signal_row"
+			],
+			[
+				"updat",
+				"update_order"
+			],
+			[
+				"u",
+				"uuid"
+			],
+			[
+				"try",
+				"try\tTry/Except"
+			],
+			[
+				"cron",
+				"cron_mode"
+			],
+			[
+				"pyr",
+				"pyramid_settings"
+			],
+			[
+				"mail",
+				"mail_entries"
+			],
+			[
+				"lo",
+				"low52_predict"
+			],
+			[
+				"strategy",
+				"strategy_stk"
+			],
+			[
+				"call",
+				"call_script"
+			],
+			[
+				"commun",
+				"subprocess_communicate"
+			],
+			[
+				"confi",
+				"config_path"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"to_",
+				"to_string"
+			],
+			[
+				"PRi",
+				"PRICE"
+			],
+			[
+				"Ord",
+				"Order"
+			],
+			[
+				"ex",
+				"executor"
+			],
+			[
+				"Order",
+				"OrderStatus"
+			],
+			[
+				"orde",
+				"order_status"
+			],
+			[
+				"prin",
+				"println\tprintln!(…)"
+			],
+			[
+				"cost",
+				"cost_var"
+			],
+			[
+				"T",
+				"Theta_grad"
+			],
+			[
+				"X",
+				"X_grad"
+			],
+			[
+				"th",
+				"Theta_grad"
+			],
+			[
+				"pre",
+				"prec"
+			],
+			[
+				"Point",
+				"Point2D"
+			],
+			[
+				"p_",
+				"p_y"
+			],
+			[
+				"x",
+				"xmax"
+			],
+			[
+				"mo",
+				"moves"
+			],
+			[
+				"mov",
+				"moves"
+			],
+			[
+				"m",
+				"match"
+			],
+			[
+				"sample",
+				"sample_2"
+			],
+			[
+				"twin",
+				"twin_source"
+			],
+			[
+				"so",
+				"source"
+			],
+			[
+				"tw",
+				"twin_source"
+			],
+			[
+				"twi",
+				"twin_prev_node"
+			],
+			[
+				"pri",
+				"priority"
+			],
+			[
+				"tre",
+				"tree_list"
+			],
+			[
+				"move",
+				"moves_made"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "harvest/nodejs/download_nse.js",
+			"settings":
+			{
+				"buffer_size": 7774,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Test"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Bench"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Release"
+				],
+				[
+					"Packages/Rust Enhanced/Cargo.sublime-build",
+					"Clippy"
+				]
+			],
+			[
+				"Packages/Rust Enhanced/Cargo.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Rust Enhanced/Rust.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust Enhanced/Rust.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/Rust Enhanced/Rust.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Test"
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Bench"
+				],
+				[
+					"Packages/Rust/Cargo.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Rust/Cargo.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Rust/Rust.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust/Rust.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/Rust/Rust.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 299.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"carg",
+				"Build With: Cargo - Run"
+			],
+			[
+				"cargo ",
+				"Build With: Cargo - Clean"
+			],
+			[
+				"test",
+				"Build With: Cargo - Test"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"cargo test",
+				"Build With: Cargo - Test"
+			],
+			[
+				"car",
+				"Build With: Cargo - Clean"
+			],
+			[
+				"cargo",
+				"Build With: Cargo - Clean"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"git stat",
+				"git: status"
+			],
+			[
+				"git:comm",
+				"git: commit including unstaged files"
+			],
+			[
+				"git:add",
+				"git: add (edit)"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"list ",
+				"Package Control: List Packages"
+			],
+			[
+				"packages",
+				"Package Control: Satisfy Dependencies"
+			],
+			[
+				"packa",
+				"Package Control: List Unmanaged Packages"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"refre",
+				"Preferences: Browse Packages"
+			],
+			[
+				"eclip",
+				"Eclipse: Format Java"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"logma",
+				"LogMagic Statement (up)"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"enable lint",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"rm",
+				"Package Control: Remove Package"
+			],
+			[
+				"fix",
+				"FixMyJS"
+			],
+			[
+				"pacl",
+				"Package Control: List Packages"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"rmove",
+				"Package Control: Remove Package"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"pwd",
+			"ls",
+			"rustc",
+			"ls",
+			"cargo build",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"ls",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/venkat299/code/python/harvest_django",
+		"/Users/venkat299/code/python/harvest_django/harvest_django"
+	],
+	"file_history":
+	[
+		"/Users/venkat299/code/python/harvest_django/harvest/tasks/eod_download.py",
+		"/Users/venkat299/code/python/harvest_django/harvest_django/settings.py",
+		"/Users/venkat299/code/python/harvest_django/.gitignore",
+		"/Users/venkat299/code/python/harvest_django/js_api_config.js",
+		"/Users/venkat299/code/temp/mpbudget_code/my_connection.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/signal.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/ledger.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/risky52d/main.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/tests/test_risky52d.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/tables/harvest.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/views/harvest.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/watchlist/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/models/ndaylow.py",
+		"/Users/venkat299/Applications/google-cloud-sdk/install.sh",
+		"/Users/venkat299/code/python/harvest_django/harvest/test_data/eod_sample_1.csv",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/risky52d/train_helper.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/tasks/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/views/task.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/order/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/home/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/strategy/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/base.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/urls.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/views/strategy.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/order.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/risky52d/train_helper_analysis.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/order/order_updatable.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/models/strategy.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/ledger/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/signal/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/forms/harvest.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/stock/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/scheduler/scheduler.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/risky52d/predict_helper.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/strategy.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/templates/legder/index.html",
+		"/Users/venkat299/code/python/harvest_django/harvest/services/risky52d/train_helper_analysisx.py",
+		"/Users/venkat299/code/python/harvest_django/harvest/tasks/nse_download.py",
+		"/Users/venkat299/code/python/harvest_django/analysis_log.csv",
+		"/Users/venkat299/code/python/harvest_django/log.csv",
+		"/Users/venkat299/code/python/harvest_django/harvest/tests/test_tasks.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/nodejs/download_nse.js",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/risky52d.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/tests/risky52d_stk.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/manager.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/risky52d_stk.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/low52d/train_strategy.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/tasks/eod_download.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/tests.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/views/home.jinja2",
+		"/Users/venkat299/code/python/harvest/src/harvest/views/task.jinja2",
+		"/Users/venkat299/code/python/harvest/src/harvest/util/myencoder.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/low52d/predict_strategy.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/util/__init__.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/__init__.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/__init__.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/low52d/predict_helper.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/test_risky52d_stk.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/strategy_stk.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/view_helper/signal.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/view_helper/strategy_stk.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/views/order.jinja2",
+		"/Users/venkat299/code/python/harvest/src/harvest/views/signal.jinja2",
+		"/Users/venkat299/code/python/harvest/src/harvest/view_helper/order.py",
+		"/Users/venkat299/code/scripts/yes_test.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/tasks/nse_download.py",
+		"/Users/venkat299/code/python/harvest/other_scripts/dump_data_into_eod_hist.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/views/strategy_stk.jinja2",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/intra_simpleb/train_helper.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/low52d/train_helper.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/scheduler/scheduler.py",
+		"/Users/venkat299/work/MPB_17_18/system_data/sanc_17_18.sql",
+		"/Applications/NextReports/nextreports-designer/9.1/nextreports",
+		"/Users/venkat299/code/python/harvest/.gitignore",
+		"/Users/venkat299/code/python/harvest/src/development.ini",
+		"/Users/venkat299/code/python/harvest/src/harvest/nodejs/dl_eod_hist.js",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/intra_simpleb/train_strategy.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/intra_simple/train_strategy.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/intra_simple/train_helper.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/view_helper/strategy.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/low52d/order_helper.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/views/strategy.jinja2",
+		"/Users/venkat299/code/python/harvest/src/harvest/strategy/common/db_updater.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/views.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/views/sidebar.html",
+		"/Users/venkat299/code/python/harvest/src/harvest/view_helper/task.py",
+		"/Users/venkat299/code/python/harvest/todo.md",
+		"/Users/venkat299/code/python/harvest/src/setup.py",
+		"/Users/venkat299/code/python/harvest/src/production.ini",
+		"/Users/venkat299/code/python/harvest/src/harvest/task_intializer.py",
+		"/Users/venkat299/code/python/harvest/src/harvest/mail/mailer.py",
+		"/Users/venkat299/code/python/harvest/README.md",
+		"/Users/venkat299/code/python/harvest/db/dont_ignore_folder.txt",
+		"/Users/venkat299/code/python/harvest/logging/tutorial/views.py",
+		"/Users/venkat299/code/python/harvest/logging/development.ini",
+		"/Users/venkat299/code/python/harvest/view_classes/development.ini",
+		"/Users/venkat299/code/python/harvest/view_classes/tutorial/tests.py",
+		"/Users/venkat299/code/python/harvest/logging/tutorial/tests.py",
+		"/Users/venkat299/code/python/harvest/view_classes/tutorial/home.pt",
+		"/Users/venkat299/code/python/harvest/more_view_classes/tutorial/views.py",
+		"/Users/venkat299/code/python/harvest/more_view_classes/tutorial/__init__.py",
+		"/Users/venkat299/code/python/harvest/more_view_classes/tutorial/home.pt",
+		"/Users/venkat299/code/python/harvest/more_view_classes/tutorial/hello.pt",
+		"/Users/venkat299/code/python/harvest/more_view_classes/tutorial/edit.pt",
+		"/Users/venkat299/code/python/harvest/more_view_classes/tutorial/tests.py",
+		"/Users/venkat299/code/python/harvest/more_view_classes/tutorial/delete.pt",
+		"/Users/venkat299/code/python/harvest/json/tutorial/tests.py",
+		"/Users/venkat299/code/python/harvest/json/tutorial/home.pt",
+		"/Users/venkat299/code/python/harvest/static_assets/tutorial/__init__.py",
+		"/Users/venkat299/code/python/harvest/static_assets/tutorial/home.pt",
+		"/Users/venkat299/code/python/harvest/static_assets/tutorial/views.py",
+		"/Users/venkat299/code/python/harvest/json/tutorial/__init__.py",
+		"/Users/venkat299/code/python/harvest/json/tutorial/views.py",
+		"/Users/venkat299/code/python/harvest/static_assets/tutorial/home.jinja2",
+		"/Users/venkat299/code/python/harvest/static_assets/tutorial/static/app.css",
+		"/Users/venkat299/code/python/harvest/jinja2/tutorial/tests.py",
+		"/Users/venkat299/code/python/harvest/jinja2/tutorial/__init__.py",
+		"/Users/venkat299/code/python/harvest/jinja2/tutorial/home.jinja2",
+		"/Users/venkat299/code/python/harvest/jinja2/tutorial/views.py",
+		"/Users/venkat299/code/python/harvest/view_classes/tutorial/views.py",
+		"/Users/venkat299/code/python/harvest/view_classes/tutorial/home.jinja2",
+		"/Users/venkat299/code/python/harvest/view_classes/tutorial/__init__.py",
+		"/Users/venkat299/code/python/harvest/request_response/tutorial/views.py",
+		"/Users/venkat299/code/python/harvest/views/tutorial/tests.py",
+		"/Users/venkat299/code/python/harvest/templating/setup.py",
+		"/Users/venkat299/code/python/harvest/templating/tutorial/__init__.py",
+		"/Users/venkat299/code/python/harvest/templating/tutorial/home.pt",
+		"/Users/venkat299/code/python/harvest/request_response/tutorial/__init__.py"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"key",
+			"quandl",
+			"api*key",
+			"api_key",
+			"seneca",
+			"key"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "harvest/nodejs/download_nse.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7774,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1177,
+								1177
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript Ultimate/javascript.dom.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.autopep8":
+	{
+		"height": 118.0
+	},
+	"output.exec":
+	{
+		"height": 177.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Rust Enhanced/Cargo.sublime-build",
+	"project": "harvest.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"sett",
+				"harvest_django/settings.py"
+			],
+			[
+				"harvest",
+				"harvest/views/harvest.py"
+			],
+			[
+				"views",
+				"harvest/views/strategy.py"
+			],
+			[
+				"tables/",
+				"harvest/tables/harvest.py"
+			],
+			[
+				"ledger",
+				"harvest/services/ledger.py"
+			],
+			[
+				"strate",
+				"harvest/views/strategy.py"
+			],
+			[
+				"url",
+				"harvest/urls.py"
+			],
+			[
+				"order",
+				"harvest/services/order.py"
+			],
+			[
+				"sign",
+				"harvest/services/signal.py"
+			],
+			[
+				"test",
+				"harvest/tests/test_risky52d.py"
+			],
+			[
+				".git",
+				".gitignore"
+			],
+			[
+				"ma",
+				"harvest/services/risky52d/main.py"
+			],
+			[
+				"train",
+				"harvest/services/risky52d/train_helper_analysis.py"
+			],
+			[
+				"strat",
+				"harvest/models/strategy.py"
+			],
+			[
+				"ur",
+				"harvest/urls.py"
+			],
+			[
+				"mai",
+				"harvest/services/risky52d/main.py"
+			],
+			[
+				"main",
+				"harvest/services/risky52d/main.py"
+			],
+			[
+				"predict",
+				"harvest/services/risky52d/predict_helper.py"
+			],
+			[
+				"legder",
+				"harvest/services/ledger.py"
+			],
+			[
+				"table/",
+				"harvest/tables/harvest.py"
+			],
+			[
+				"strategy/inde",
+				"harvest/templates/strategy/index.html"
+			],
+			[
+				"watchli",
+				"harvest/templates/watchlist/index.html"
+			],
+			[
+				"stra",
+				"harvest/models/strategy.py"
+			],
+			[
+				"urls",
+				"harvest/urls.py"
+			],
+			[
+				"pred",
+				"harvest/services/risky52d/predict_helper.py"
+			],
+			[
+				"strategy",
+				"harvest/views/strategy.py"
+			],
+			[
+				"view",
+				"harvest/views/harvest.py"
+			],
+			[
+				"predict_helper",
+				"harvest/services/risky52d/predict_helper.py"
+			],
+			[
+				"tra",
+				"harvest/services/risky52d/train_helper.py"
+			],
+			[
+				"test_",
+				"harvest/tests/test_tasks.py"
+			],
+			[
+				"app",
+				"src/harvest/nodejs/app_logger.js"
+			],
+			[
+				"./node_modules/",
+				"harvest_api/harvest_server/node_modules/node.extend/node_modules/is/CHANGELOG.md"
+			],
+			[
+				"fifty",
+				"harvest_api/harvest_strategy/python_src/strategy/fifty_2_wk.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 463.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 165.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

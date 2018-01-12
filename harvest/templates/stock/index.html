@@ -1,0 +1,20 @@
+
+{% include 'base.html' %}
+
+{% load static crispy_forms_tags django_tables2 %}
+
+{% load bootstrap3 %}
+{# Load CSS and JavaScript #}
+{# bootstrap_css #}
+{% bootstrap_javascript %}
+
+
+{% if user_stock_list %}
+    <ul>
+    {% for stock in user_stock_list %}
+        <li><a href="/stock/{{ stock.id }}/">{{ stock.stock }} | {{ stock.name }} </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No stock are available.</p>
+{% endif %}

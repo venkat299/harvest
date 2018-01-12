@@ -1,0 +1,81 @@
+{% include 'base.html' %}
+
+{% load static crispy_forms_tags django_tables2 %}
+
+{% load bootstrap3 %}
+{# Load CSS and JavaScript #}
+{# bootstrap_css #}
+{% bootstrap_javascript %}
+<table class="ui celled  compact striped table">
+    <thead>
+        <tr>
+            <th>Stock</th>
+            <th>Signal</th>
+            <th>Status</th>
+            <th>Exit</th>
+            <th>Score</th>
+            <th>Re. Profit</th>
+            <th>Unreal. Gain</th>
+            <th>Close Signal</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% if user_watchlist %} 
+            {% for stock in user_watchlist %}
+            <tr>
+            <td> {{ stock.stock.stock }} </td>
+            <td> {{ stock.signal_status }} </td>
+            <td> {{ stock.status }}</td>
+            <td> {{ stock.exit }} </td>
+            <td> {{ stock.norm_score}}</td>
+            <td> {{ stock.profit_earned }}</td>
+            <td> {{ stock.unreal_gain}}</td>
+            <td class="{{ stock.signal_status }}_hide">
+                <button class="ui tiny labeled icon button signal_close" data-watchlist_id="{{ stock.id }}" data-action="watchlist signal_close">
+                    <i class="right refresh icon"></i> Close
+                </button>
+            </td>
+            </tr>
+            {% endfor %} 
+        
+        
+        {% else %}
+        <p>No records available.</p>
+        {% endif %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+      var onFailure =  function(response) {
+      // request failed, or valid response but response.success = false
+      console.log('operation failed')
+    }
+    var onError =  function(errorMessage) {
+      // invalid response
+      console.log('request failed')
+    }
+
+  /* Define API endpoints once globally */ 
+   $.fn.api.settings.api = { 
+    'watchlist signal_close' : '/harvest/signal/close/{watchlist_id}'
+  };
+
+ $('.signal_close.button')
+  .api({
+    onSuccess: function(response) {
+    console.log(response)
+    },
+     beforeSend: function(settings) {
+      return settings;
+    },
+    onFailure:onFailure ,
+    onError:onError,
+  });
+
+</script>
+<style type="text/css">
+.CLOSE_hide, .PENDING_CLOSE_hide, .PENDING_OPEN_hide  {
+    display: none;
+}
+</style>

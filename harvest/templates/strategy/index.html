@@ -1,0 +1,118 @@
+{% include 'base.html' %}
+
+{% load static crispy_forms_tags django_tables2 %}
+{% load bootstrap3 %}
+{# Load CSS and JavaScript #}
+{# bootstrap_css #}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Predict</th>
+            <th>Train</th>
+            <th>Reset</th>
+            <th>Signals</th>
+            <th>Orders</th>
+            <th>Ledger</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if user_strategy_list %} {% for strategy in user_strategy_list %}
+        <tr>
+            <td>
+                <a href="{% url 'harvest:watchlist' strategy.id %}"  onclick=load_page("{% url 'harvest:watchlist' strategy.id %}")>{{ strategy.name }}</a>
+            </td>
+            <td>{{ strategy.status }}</td>
+            <td>
+                <button class="ui tiny labeled icon button task_predict" data-task_id="{{ strategy.id }}" data-action="watchlist task_predict">
+                    <i class="right refresh icon"></i> Predict
+                </button>
+            </td>
+            <td>
+                <button class="ui tiny labeled icon button task_train" data-task_id="{{ strategy.id }}" data-action="watchlist task_train">
+                    <i class="right refresh icon"></i> Train
+                </button>
+            </td>
+            <td>
+                <button class="ui tiny labeled icon button task_reset" data-task_id="{{ strategy.id }}" data-action="watchlist task_reset">
+                    <i class="right refresh icon"></i> Reset
+                </button>
+            </td>
+            <td> <a href="{% url 'harvest:signal_list' %}??watchlist__strategy__name={{ strategy.name }}">Signals</a></td>
+            <td> <a href="{% url 'harvest:order_list' %}??watchlist__strategy__name={{ strategy.name }}">Order</a></td>
+            <td> <a href="{% url 'harvest:ledger_list' %}??watchlist__strategy__name={{ strategy.name }}">Ledger</a></td>
+
+        </tr>
+        {% endfor %} {% else %}
+        <p>No Strategy are available.</p>
+        {% endif %}
+    </tbody>
+</table>
+
+</html>
+<script type="text/javascript">
+      var onFailure =  function(response) {
+      // request failed, or valid response but response.success = false
+      console.log('operation failed')
+    }
+    var onError =  function(errorMessage) {
+      // invalid response
+      console.log('request failed')
+    }
+
+  /* Define API endpoints once globally */ 
+   $.fn.api.settings.api = { 
+    // 'watchlist task_train' : "{% url 'harvest:strategy_train' 0 %}"+'/{task_id}'
+    // url generation should not be managed by frontend. should utlilze django framework's url option
+    'watchlist task_train' : '/harvest/strategy/train/{task_id}',
+    'watchlist task_predict' : '/harvest/strategy/predict/{task_id}',
+    'watchlist task_reset' : '/harvest/strategy/reset/{task_id}'
+  };
+
+ $('.task_train.button')
+  .api({
+    onSuccess: function(response) {
+    console.log(response)
+    },
+     beforeSend: function(settings) {
+      return settings;
+    },
+    onFailure:onFailure ,
+    onError:onError,
+  });
+
+ $('.task_predict.button')
+  .api({
+    onSuccess: function(response) {
+    console.log(response)
+    },
+     beforeSend: function(settings) {
+      return settings;
+    },
+    onFailure:onFailure ,
+    onError:onError,
+  });
+ $('.task_reset.button')
+  .api({
+    onSuccess: function(response) {
+    console.log(response)
+    },
+     beforeSend: function(settings) {
+      return settings;
+    },
+    onFailure:onFailure ,
+    onError:onError,
+  });
+  function load_page(url) {
+
+  // alert(url)
+
+$("#content").load(url);
+}
+</script>

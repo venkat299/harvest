@@ -1,0 +1,29 @@
+{
+  "name": "harvest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "csv-parse": "^1.1.9",
+    "mimicry": "github:venkat299/mimicry",
+    "moment": "^2.17.1",
+    "path": "^0.12.7",
+    "unzip": "^0.1.11",
+    "winston": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venkat299/harvest_rust.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/venkat299/harvest_rust/issues"
+  },
+  "homepage": "https://github.com/venkat299/harvest_rust#readme"
+}

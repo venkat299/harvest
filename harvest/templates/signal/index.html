@@ -1,0 +1,53 @@
+{% include 'base.html' %}
+
+{% load static crispy_forms_tags django_tables2 %}
+
+{% load bootstrap3 %}
+{# Load CSS and JavaScript #}
+{# bootstrap_css #}
+{% bootstrap_javascript %}
+
+<!-- <script src="{% static 'user/datatable.js' %}"></script> -->
+<!-- 
+<link rel="stylesheet" href="{% static 'user/user.css' %}" /> -->
+
+{% block content %}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+<!--         <h3 class="panel-title">Filter <span> Total Rows: </span></h3>  -->
+<!-- <div class="container"> -->
+  <div class="row">
+    <div class="col-xs-4 bold p_header">Filter</div>
+    <div class="col-xs-8">
+      <div class="row">
+        <div class="col-md-4 col-md-push-8  bold p_header">Total Rows : {{ total_rows }} </div>
+<!--         <div class="col-md-8 col-md-pull-4">Content</div> -->
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+      </div>
+      <div class="panel-body">
+        {% crispy filter.form filter.form.helper %}
+       
+      </div>
+    </div >
+    {% for format in table.export_formats %}
+    <a href="{% querystring '_export'=format %}">
+        download  <code>.{{ format }}</code>
+    </a>
+{% endfor %}
+    <div class=".wrapper">
+       {% render_table table %}
+
+    </div>
+
+
+{% endblock %}
+
+
+<style type="text/css">
+
+</style>
+

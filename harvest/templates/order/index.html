@@ -1,0 +1,103 @@
+{% include 'base.html' %} {% load static crispy_forms_tags django_tables2 %} {% load bootstrap3 %} {# Load CSS and JavaScript #} {# bootstrap_css #} {% bootstrap_javascript %}
+
+
+<!-- <script src="{% static 'user/datatable.js' %}"></script> -->
+<!-- 
+<link rel="stylesheet" href="{% static 'user/user.css' %}" /> -->
+<body>
+<div class="ui small inverted modal">
+  <div class="ui icon header">
+    <i class="archive icon"></i>
+    Enter Avg Price
+  </div>
+  <div class="content">
+
+    <div id="dialog" title="Dialog Form">
+        <label>Avg price:</label>
+        <input id="avg_price" name="Avg Price" type="number">
+        <label>Uuid:</label>
+        <input id="uuid" name="Uuid" type="text">
+  </div>
+
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      No
+    </div>
+    <div class="ui green ok inverted button confirm_order">
+      <i class="checkmark icon"></i>
+      Confirm
+    </div>
+  </div>
+</div>
+
+{% block content %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <!-- <h3 class="panel-title">Filter <span> Total Rows: </span></h3>  -->
+        <!-- <div class="container"> -->
+        <div class="row">
+            <div class="col-xs-4 bold p_header">Filter</div>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-md-4 col-md-push-8  bold p_header">Total Rows : {{ total_rows }} </div>
+                    <!--         <div class="col-md-8 col-md-pull-4">Content</div> -->
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+    <div class="panel-body">
+        {% crispy filter.form filter.form.helper %}
+    </div>
+</div>
+{% for format in table.export_formats %}
+<a href="{% querystring '_export'=format %}">
+        download  <code>.{{ format }}</code>
+    </a> {% endfor %}
+<div class=".wrapper">
+    {% render_table table %}
+</div>
+{% endblock %}
+</body>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(function() {
+        // $("#dialog").hide()
+        $(".confirm_button").on("click", function(e) {
+          $('#uuid')[0].value=e.currentTarget.attributes.uuid.value
+          $('#avg_price')[0].value=e.currentTarget.attributes.price.value
+          $('.ui.modal').modal('show')
+        });
+    });
+    $('.cancel').on("click",function(e){
+      console.log(e)
+      $('.ui.modal').modal('hide')
+    })
+    // Validating Form Fields.....
+    $(".confirm_order").click(function(e) {
+      x=e
+      console.log(x)
+        var uuid = $("#uuid").val();
+        var avg_price = $("#avg_price").val();
+        console.log(avg_price, uuid)
+        // $.get('/harvest/strategy/confirm_order/dd6eb1c2-e1eb-4e5f-9635-f48dc72cebca/0/',
+        // uuid = uuid.replace(/-/g,'')
+        $.get( "/harvest/strategy/confirm_order/"+uuid+"/"+avg_price+"/", 
+          function(data) {
+        console.log( "Data Loaded: ",  data );
+        if(data.success===true){
+           $('.ui.modal').modal('hide')
+           $('#'+uuid).parent().parent().children()[5].textContent=avg_price
+           $('#'+uuid).parent().parent().children()[2].textContent='COMPLETE'
+        }
+        else{
+          alert(data.msg)
+        }
+        });
+    });
+});
+</script>
