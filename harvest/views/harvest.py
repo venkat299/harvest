@@ -46,7 +46,7 @@ class StrategyView(generic.ListView):
     context_object_name = 'user_strategy_list'
 
     def get_queryset(self):
-        return Strategy.objects.order_by('-name')
+        return Strategy.objects.annotate(prof=Sum('watchlist__profit_earned'))
 
 
 class StockView(generic.ListView):
@@ -178,16 +178,29 @@ class SignalListView(PagedFilteredTableView):
         return context
 
 def watchlist(request, strategy_id):
+    total_gain = 0
+    total_unreal = 0
+    total_fund_avail = 0
+    strategy = Strategy.objects.get(id=strategy_id)
     try:
         watchlist_ls = Watchlist.objects.filter(strategy=strategy_id).order_by('-signal_status','profit_earned')
         for item in watchlist_ls:
+            total_gain = total_gain + item.profit_earned
             if item.signal_status=='OPEN':
                 item.unreal_gain = (item.stock.close - item.last_transact_price) * item.last_qty
+                total_unreal = total_unreal + item.unreal_gain
             else:
                 item.unreal_gain=''
+        total_fund_avail = ledger.get_current_avail(strategy.name)
+
     except Watchlist.DoesNotExist:
         raise Http404("watchlist does not exist")
-    return render(request, 'watchlist/index.html', {'user_watchlist': watchlist_ls})
+    return render(request, 'watchlist/index.html', {'user_watchlist': watchlist_ls,
+            'total_gain':total_gain,
+            'total_unreal':total_unreal,
+            'total_fund_avail':total_fund_avail,
+            'strategy':strategy
+            })
 
 def close_signal(request, watchlist_id):
     response = {"success":False}
@@ -202,7 +215,6 @@ def close_signal(request, watchlist_id):
 def add_fund(request, strategy_id, amt):
     amt = decimal.Decimal(amt)
     response = {"success":False}
-    amt=3000
     try:
         strategy = Strategy.objects.get(id=strategy_id)
         response = ledger.add_fund(strategy, amt)

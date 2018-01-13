@@ -20,20 +20,24 @@ def get_current_avail(strategy_name):
 
 
 def add_fund(strategy, amt):
+    if amt <=0:
+        return {"success": False, "msg":"Amount is not positive"}
     opening = get_current_avail(strategy.name)
     if opening is None:
         opening = 0
 
     fund_entry(opening, amt, 0, (opening)+amt, strategy, 'CASHIN')
-    return {"success": True}
+    return {"success": True, "avail_fund":get_current_avail(strategy.name) }
 
 def pull_fund(strategy, amt):
+    if amt <=0:
+        return {"success": False, "msg":"Amount is not positive"}
     opening = get_current_avail(strategy.name)
     if opening < amt:
         return {"success": False, "msg":"Insufficient fund"}
 
     fund_entry(opening, 0, amt, (opening)-amt, strategy, 'CASHOUT')
-    return {"success": True}
+    return {"success": True, "avail_fund":get_current_avail(strategy.name) }
 
 
 def fund_entry(opening, credit, debit, closing, strategy, desc):
