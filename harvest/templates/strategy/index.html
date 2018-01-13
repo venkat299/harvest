@@ -13,6 +13,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Profit </th>
             <th>Status</th>
             <th>Predict</th>
             <th>Train</th>
@@ -28,6 +29,7 @@
             <td>
                 <a href="{% url 'harvest:watchlist' strategy.id %}"  onclick=load_page("{% url 'harvest:watchlist' strategy.id %}")>{{ strategy.name }}</a>
             </td>
+            <td>{{ strategy.prof }}</td>
             <td>{{ strategy.status }}</td>
             <td>
                 <button class="ui tiny labeled icon button task_predict" data-task_id="{{ strategy.id }}" data-action="watchlist task_predict">
