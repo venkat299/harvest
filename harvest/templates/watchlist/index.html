@@ -154,6 +154,10 @@ $(document).ready(function() {
   .modal('show')
         });
 });
+    $('.cancel').on("click",function(e){
+      // console.log(e)
+      $('.ui.modal').modal('hide')
+    })
         $(".confirm_order").click(function(e) {
       x=e
       console.log(x)
