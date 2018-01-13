@@ -52,6 +52,7 @@ class SignalFilter(FilterSet):
 class LedgerTable(tables.Table):
     class Meta:
         model = Ledger
+        order_by = '-timestamp'
         fields = ['opening', 'credit', 'debit', 'closing', 'strategy', 'desc', 'signal_status', 'timestamp']
         attrs = {"class": "ui striped compact celled table"}
         empty_text = "There are no records matching the search criteria..."
@@ -61,6 +62,7 @@ class OrderTable(tables.Table):
     cancel = tables.Column(accessor='uuid', verbose_name='cancel', exclude_from_export=True)
     class Meta:
         model = Order
+        order_by = '-time'
         fields = ['signal.watchlist.strategy.name', 'signal.watchlist.stock.stock', 'status', 'qty','price','avg_price','remote_status','call','time', 'uuid']
         attrs = {"class": "ui striped compact celled table"}
         empty_text = "There are no records matching the search criteria..."
@@ -86,6 +88,7 @@ class OrderTable(tables.Table):
 class SignalTable(tables.Table):
     class Meta:
         model = Signal
+        order_by = '-time'
         fields = ['watchlist.strategy.name', 'watchlist.stock.stock', 'status', 'time', 'uuid']
         attrs = {"class": "ui striped compact celled table"}
         empty_text = "There are no records matching the search criteria..."
