@@ -1,50 +1,42 @@
-{% include 'base.html' %}
-
-{% load static crispy_forms_tags django_tables2 %}
-
-{% load bootstrap3 %}
-{# Load CSS and JavaScript #}
-{# bootstrap_css #}
-{% bootstrap_javascript %}
+{% include 'base.html' %} {% load static crispy_forms_tags django_tables2 %} {% load bootstrap3 %} {# Load CSS and JavaScript #} {# bootstrap_css #} {% bootstrap_javascript %}
 <div class="ui horizontal list">
     <div class="item"></div>
-  <div class="item">
+    <div class="item">
         <div class="ui raised segment">
-        <a class="ui red ribbon label">Realised Gain</a>
-        <div class="content">
-            <h2 class="ui header">
+            <a class="ui red ribbon label">Realised Gain</a>
+            <div class="content">
+                <h2 class="ui header">
         {{ total_unreal }}
         </h2>
+            </div>
         </div>
     </div>
-  </div>
-  <div class="item"></div>
+    <div class="item"></div>
     <div class="item">
         <div class="ui raised segment">
-        <a class="ui red ribbon label">Unrealised Gain</a>
-        <div class="content">
-            <h2 class="ui header">
+            <a class="ui red ribbon label">Unrealised Gain</a>
+            <div class="content">
+                <h2 class="ui header">
         {{ total_gain }}
         </h2>
+            </div>
         </div>
     </div>
-  </div>
-  <div class="item"></div>
+    <div class="item"></div>
     <div class="item">
         <div class="ui raised segment">
-        <a class="ui red ribbon label">Fund Available</a>
-        <div class="content">
-            <h2 class="ui header" id="fund_avail">
+            <a class="ui red ribbon label">Fund Available</a>
+            <div class="content">
+                <h2 class="ui header" id="fund_avail">
         {{ total_fund_avail }}
         </h2>
+            </div>
         </div>
     </div>
-  </div>
-
-<div class="item"></div> 
-<div class="item">
-  <button class="ui manage_fund button">Manage Fund</button>
-</div>
+    <div class="item"></div>
+    <div class="item">
+        <button class="ui teal manage_fund button">Manage Fund</button>
+    </div>
 </div>
 <table class="ui celled  compact striped table">
     <thead>
@@ -57,13 +49,11 @@
             <th>Re. Profit</th>
             <th>Unreal. Gain</th>
             <th>Close Signal</th>
-
         </tr>
     </thead>
     <tbody>
-        {% if user_watchlist %} 
-            {% for stock in user_watchlist %}
-            <tr>
+        {% if user_watchlist %} {% for stock in user_watchlist %}
+        <tr>
             <td> {{ stock.stock.stock }} </td>
             <td> {{ stock.signal_status }} </td>
             <td> {{ stock.status }}</td>
@@ -76,114 +66,104 @@
                     <i class="right refresh icon"></i> Close
                 </button>
             </td>
-            </tr>
-            {% endfor %} 
-        
-        
-        {% else %}
+        </tr>
+        {% endfor %} {% else %}
         <p>No records available.</p>
         {% endif %}
     </tbody>
 </table>
 <div class="ui modal dimmable dimmed">
-  <div class="ui icon header">
-    <i class="archive icon"></i>
-    Enter Amount
-  </div>
-  <div class="content">
-
-    <div id="dialog" title="Dialog Form">
-        <label>Amount:</label>
-        <input id="amt" name="amt" type="decimal">
-        <input id="strategy_id" type="hidden" name="strategy_id" value={{strategy.id}}>
-         <label> Type : </label>
-        <select name="fund_type" class="ui dropdown" id="fund_type">
-  <option value="add_fund">Add Fund</option>
-  <option value="pull_fund">Pull Fund</option>
-</select>
-
-  </div>
-  
-  </div>
-  <div class="actions">
-    <div class="ui red basic cancel  button">
-      <i class="remove icon"></i>
-      No
+    <div class="ui icon header">
+        <i class="archive icon"></i> Enter Amount
     </div>
-    <div class="ui green ok  button confirm_order">
-      <i class="checkmark icon"></i>
-      Confirm
+    <div class="content">
+        <div id="dialog" title="Dialog Form">
+            <label>Amount:</label>
+            <input id="amt" name="amt" type="decimal">
+            <input id="strategy_id" type="hidden" name="strategy_id" value={{strategy.id}}>
+            <label> Type : </label>
+            <select name="fund_type" class="ui dropdown" id="fund_type">
+                <option value="add_fund">Add Fund</option>
+                <option value="pull_fund">Pull Fund</option>
+            </select>
+        </div>
     </div>
-  </div>
+    <div class="actions">
+        <div class="ui red basic cancel  button">
+            <i class="remove icon"></i> No
+        </div>
+        <div class="ui green ok  button confirm_order">
+            <i class="checkmark icon"></i> Confirm
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
-      var onFailure =  function(response) {
-      // request failed, or valid response but response.success = false
-      console.log('operation failed')
-    }
-    var onError =  function(errorMessage) {
-      // invalid response
-      console.log('request failed')
-    }
+var onFailure = function(response) {
+    // request failed, or valid response but response.success = false
+    console.log('operation failed')
+}
+var onError = function(errorMessage) {
+    // invalid response
+    console.log('request failed')
+}
 
-  /* Define API endpoints once globally */ 
-   $.fn.api.settings.api = { 
-    'watchlist signal_close' : '/harvest/signal/close/{watchlist_id}'
-  };
+/* Define API endpoints once globally */
+$.fn.api.settings.api = {
+    'watchlist signal_close': '/harvest/signal/close/{watchlist_id}'
+};
 
- $('.signal_close.button')
-  .api({
-    onSuccess: function(response) {
-    console.log(response)
-    },
-     beforeSend: function(settings) {
-      return settings;
-    },
-    onFailure:onFailure ,
-    onError:onError,
-  });
+$('.signal_close.button')
+    .api({
+        onSuccess: function(response) {
+            console.log(response)
+        },
+        beforeSend: function(settings) {
+            return settings;
+        },
+        onFailure: onFailure,
+        onError: onError,
+    });
 $(document).ready(function() {
     $(function() {
-   $(".manage_fund").on("click", function(e) {
-          $('#amt')[0].value=0.00
-          $('.ui.modal')
-  .modal({
-    dimmer:true,
-    blurring: true
-  })
-  .modal('show')
+        $(".manage_fund").on("click", function(e) {
+            $('#amt')[0].value = 0.00
+            $('.ui.modal')
+                .modal({
+                    dimmer: true,
+                    blurring: true
+                })
+                .modal('show')
         });
-});
-    $('.cancel').on("click",function(e){
-      // console.log(e)
-      $('.ui.modal').modal('hide')
+    });
+    $('.cancel').on("click", function(e) {
+        // console.log(e)
+        $('.ui.modal').modal('hide')
     })
-        $(".confirm_order").click(function(e) {
-      x=e
-      console.log(x)
+    $(".confirm_order").click(function(e) {
+        x = e
+        console.log(x)
         var type = $("#fund_type").val();
         var amount = $("#amt").val();
         var strategy_id = $("#strategy_id").val();
         // console.log(amount, type, strategy_id)
-        $.get( "/harvest/ledger/"+type+"/"+strategy_id+"/"+amount+"/", 
-          function(data) {
-        // console.log( "Data Loaded: ",  data );
-        if(data.success===true){
-           $('.ui.modal').modal('hide')
-           $('#fund_avail').text(data.avail_fund)
-           
-        }
-        else{
-          alert(data.msg)
-        }
-        });
+        $.get("/harvest/ledger/" + type + "/" + strategy_id + "/" + amount + "/",
+            function(data) {
+                // console.log( "Data Loaded: ",  data );
+                if (data.success === true) {
+                    $('.ui.modal').modal('hide')
+                    $('#fund_avail').text(data.avail_fund)
+
+                } else {
+                    alert(data.msg)
+                }
+            });
     });
 })
-
-
 </script>
 <style type="text/css">
-.CLOSE_hide, .PENDING_CLOSE_hide, .PENDING_OPEN_hide  {
+.CLOSE_hide,
+.PENDING_CLOSE_hide,
+.PENDING_OPEN_hide {
     display: none;
 }
 </style>

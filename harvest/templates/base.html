@@ -1,51 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title></title>
-{% load static %}
+    {% load static %}
     <link rel="stylesheet" type="text/css" href={% static "harvest/semantic/semantic.min.css" %}>
-
-<script src={% static "harvest/jquery/jquery-3.1.1.min.js" %} type="text/javascript"></script>
-<script src={% static "harvest/semantic/semantic.min.js" %}></script>
-
+    <script src={% static "harvest/jquery/jquery-3.1.1.min.js" %} type="text/javascript"></script>
+    <script src={% static "harvest/semantic/semantic.min.js" %}></script>
 </head>
+
 <body>
-
-
-  <div class="ui inverted labeled icon left inline horizontal  menu" style="">
-    <a class="item" href ="{% url 'harvest:strategy' %}" >
+    <div class="ui inverted labeled icon left inline horizontal  menu" style="">
+        <a class="item" href="{% url 'harvest:strategy' %}">
       <i class="idea icon"></i>
       Strategy
     </a>
-<!--     <a class="item" href ="{% url 'harvest:stock' %}" >
+        <!--     <a class="item" href ="{% url 'harvest:stock' %}" >
       <i class=" ticket icon"></i>
       Stock
     </a> -->
-    <a class="item" href ="{% url 'harvest:order_list' %}" >
+        <a class="item" href="{% url 'harvest:order_list' %}">
       <i class=" ticket icon"></i>
       Orders
     </a>
-    <a class="item" href ="{% url 'harvest:signal_list' %}" >
+        <a class="item" href="{% url 'harvest:signal_list' %}">
       <i class="lightning icon"></i>
       Signal
     </a>
-    <a class="item" href ="{% url 'harvest:ledger_list' %}" >
+        <a class="item" href="{% url 'harvest:ledger_list' %}">
       <i class="lab icon"></i>
       Ledger
     </a>
-    <a class="item" href ="/admin/django_apscheduler/djangojob/" >
+        <a class="item" href="/admin/django_apscheduler/djangojob/">
       <i class="tasks icon"></i>
       Task
     </a>
-  </div>
-  <div class="pusher">
-    <div class="ui  fluid container" id ="content">
     </div>
-  </div>
-
-
+    <div class="pusher">
+        <div class="ui  fluid container" id="content">
+        </div>
+    </div>
 </body>
+
 </html>
-
-
-

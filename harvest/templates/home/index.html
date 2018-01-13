@@ -2,33 +2,33 @@
 <html lang="en">
 {% load static %}
 <link rel="stylesheet" type="text/css" href={% static "harvest/semantic/semantic.min.css" %}>
-    <script src={% static "harvest/jquery/jquery-3.1.1.min.js" %} type="text/javascript"></script>
+<script src={% static "harvest/jquery/jquery-3.1.1.min.js" %} type="text/javascript"></script>
 <script src={% static "harvest/semantic/semantic.min.js" %}></script>
 
 <head>
     <title>Home</title>
 </head>
+
 <body>
-<!-- <div class="ui top attached demo menu">
+    <!-- <div class="ui top attached demo menu">
   <a class="item">
     <i class="sidebar  icon"></i>
     Menu
   </a>
 </div> -->
-
-<script type="text/javascript">
+    <script type="text/javascript">
     // using context
-$('.ui.sidebar')
-  .sidebar({
-    context: $('.bottom.segment')
-  })
-  .sidebar('attach events', '.menu .item')
-;
-function load_page(url) {
-$("#content").load(url);
-}
+    $('.ui.sidebar')
+        .sidebar({
+            context: $('.bottom.segment')
+        })
+        .sidebar('attach events', '.menu .item');
 
-if(window.location.hash.substr(1)|| false){
-$("#content").load(window.location.hash.substr(1));
-}
-</script>
+    function load_page(url) {
+        $("#content").load(url);
+    }
+
+    if (window.location.hash.substr(1) || false) {
+        $("#content").load(window.location.hash.substr(1));
+    }
+    </script>
