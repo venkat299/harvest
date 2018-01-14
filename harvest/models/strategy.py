@@ -14,7 +14,7 @@ class Stock(models.Model):
     tottrdval = models.DecimalField(max_digits=20, default=0, decimal_places=2)
     timestamp = models.DateField()
     totaltrades = models.IntegerField(default=0)
-    isin = models.CharField(max_length=20)
+    isin = models.CharField(max_length=20, primary_key=True)
     def __str__(self):
         return self.isin+'__'+self.stock+'__'+str(self.close)
 
