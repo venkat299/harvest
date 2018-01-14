@@ -86,8 +86,13 @@ def train_stock(stock):
 
         mean_trade_val = round(dt.turnover.mean(),0)
         if mean_trade_val < settings.R52D_TURNOVER:
-            pass
-            #raise Exception('low trade volume skip stock')
+            # pass
+            raise Exception('low trade volume; skipping stock')
+
+        mean_close_val = round(dt.close.mean(),0)
+        if mean_close_val < settings.R52D_AVG_PRICE_ATLEAST:
+            # pass
+            raise Exception('low closing value; skipping stock')
 
         margin = [1.02,1.04, 1.04,1.08,1.16,1.32,1.64,2.28,3.56] #
         n_day_low = [4, 8, 16, 32, 64, 128, 256, 365]

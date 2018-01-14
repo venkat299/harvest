@@ -135,11 +135,13 @@ class Risky52D(Base):
         curr_stk = Risky52D.curr_stk()
         open_stk = Risky52D.open_stk()
 
-        stk_count = settings.R52D_STK_COUNT
+        # stk_count = settings.R52D_STK_COUNT
+        stk_count = Risky52D.allowed_stock_no()
+        avg_hold_days_atleast = settings.R52D_AVG_HOLD_DAYS_ATLEAST
         budget_max = settings.R52D_STK_BUDGET_MAX
         budget_min = settings.R52D_STK_BUDGET_MIN
 
-        final_entries = Ndaylow.objects.filter(avg_hold_inter__gte=5).order_by('-norm_score')[:stk_count]
+        final_entries = Ndaylow.objects.filter(avg_hold_inter__gte=avg_hold_days_atleast).order_by('-norm_score')[:stk_count]
         # setting allocation 
         i=0
         for item in final_entries:
