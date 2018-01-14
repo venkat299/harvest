@@ -44,18 +44,18 @@ class Risky52D(TestCase):
         Ledger.objects.create(credit=20000, closing=20000,desc="RISKY52D/CASHIN",strategy=strategy, timestamp=timezone.now())
         super(Risky52D, cls).setUpClass()
 
-    def test_strategy_view_with_an_entry(self):
-        """
-        test the web page for strategy
-        """
-        response = self.client.get(reverse('harvest:strategy'))
-        self.assertQuerysetEqual(
-            response.context['user_strategy_list'],
-            ['<Strategy: RISKY52D__ACTIVE>']
-        )
-        self.assertContains(response, '''>RISKY52D</a>
-            </td>
-            <td>ACTIVE</td>''')
+    # def test_strategy_view_with_an_entry(self):
+    #     """
+    #     test the web page for strategy
+    #     """
+    #     response = self.client.get(reverse('harvest:strategy'))
+    #     self.assertQuerysetEqual(
+    #         response.context['user_strategy_list'],
+    #         ['<Strategy: RISKY52D__ACTIVE>']
+    #     )
+    #     self.assertContains(response, '''>RISKY52D</a>
+    #         </td>
+    #         <td>ACTIVE</td>''')
 
 
     @skip('time consuming')
