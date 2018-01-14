@@ -92,8 +92,10 @@ def execute():
     if success:
         log.info('download success')
         upload_to_db()
+        return {"success":True}
     else:
         log.info('download failed')
+        return {"success":False, 'msg':'download failed'}
 
 
 if __name__ == '__main__':

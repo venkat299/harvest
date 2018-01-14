@@ -195,7 +195,7 @@ def watchlist(request, strategy_id):
 
     except Watchlist.DoesNotExist:
         raise Http404("watchlist does not exist")
-    return render(request, 'watchlist/index.html', {'user_watchlist': watchlist_ls,
+    return render(request, 'watchlist/'+strategy.name+'_index.html', {'user_watchlist': watchlist_ls,
             'total_gain':total_gain,
             'total_unreal':total_unreal,
             'total_fund_avail':total_fund_avail,

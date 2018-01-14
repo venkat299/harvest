@@ -16,8 +16,8 @@
             <th>Profit </th>
             <th>Status</th>
             <th>Predict</th>
-            <th>Train</th>
-            <th>Reset</th>
+            <!-- <th>Train</th> -->
+            <!-- <th>Reset</th> -->
             <th>Signals</th>
             <th>Orders</th>
             <th>Ledger</th>
@@ -36,16 +36,16 @@
                     <i class="right refresh icon"></i> Predict
                 </button>
             </td>
-            <td>
+<!--             <td>
                 <button class="ui tiny labeled icon button task_train" data-task_id="{{ strategy.id }}" data-action="watchlist task_train">
                     <i class="right refresh icon"></i> Train
                 </button>
-            </td>
-            <td>
+            </td> -->
+<!--             <td>
                 <button class="ui tiny labeled icon button task_reset" data-task_id="{{ strategy.id }}" data-action="watchlist task_reset">
                     <i class="right refresh icon"></i> Reset
                 </button>
-            </td>
+            </td> -->
             <td> <a href="{% url 'harvest:signal_list' %}??watchlist__strategy__name={{ strategy.name }}">Signals</a></td>
             <td> <a href="{% url 'harvest:order_list' %}??watchlist__strategy__name={{ strategy.name }}">Order</a></td>
             <td> <a href="{% url 'harvest:ledger_list' %}??watchlist__strategy__name={{ strategy.name }}">Ledger</a></td>
@@ -59,62 +59,19 @@
 
 </html>
 <script type="text/javascript">
-      var onFailure =  function(response) {
-      // request failed, or valid response but response.success = false
-      console.log('operation failed')
-    }
-    var onError =  function(errorMessage) {
-      // invalid response
-      console.log('request failed')
-    }
 
   /* Define API endpoints once globally */ 
    $.fn.api.settings.api = { 
     // 'watchlist task_train' : "{% url 'harvest:strategy_train' 0 %}"+'/{task_id}'
     // url generation should not be managed by frontend. should utlilze django framework's url option
-    'watchlist task_train' : '/harvest/strategy/train/{task_id}',
+    // 'watchlist task_train' : '/harvest/strategy/train/{task_id}',
     'watchlist task_predict' : '/harvest/strategy/predict/{task_id}',
-    'watchlist task_reset' : '/harvest/strategy/reset/{task_id}'
+    // 'watchlist task_reset' : '/harvest/strategy/reset/{task_id}'
   };
 
- $('.task_train.button')
-  .api({
-    onSuccess: function(response) {
-    console.log(response)
-    },
-     beforeSend: function(settings) {
-      return settings;
-    },
-    onFailure:onFailure ,
-    onError:onError,
-  });
+ $('.task_predict.button').api({onSuccess: console.log});
 
- $('.task_predict.button')
-  .api({
-    onSuccess: function(response) {
-    console.log(response)
-    },
-     beforeSend: function(settings) {
-      return settings;
-    },
-    onFailure:onFailure ,
-    onError:onError,
-  });
- $('.task_reset.button')
-  .api({
-    onSuccess: function(response) {
-    console.log(response)
-    },
-     beforeSend: function(settings) {
-      return settings;
-    },
-    onFailure:onFailure ,
-    onError:onError,
-  });
-  function load_page(url) {
-
-  // alert(url)
-
+function load_page(url) {
 $("#content").load(url);
 }
 </script>

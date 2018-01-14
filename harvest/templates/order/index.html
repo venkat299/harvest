@@ -67,18 +67,15 @@ $(document).ready(function() {
         });
     });
     $('.cancel').on("click", function(e) {
-        console.log(e)
         $('.ui.modal').modal('hide')
     })
     // Validating Form Fields.....
     $(".confirm_order").click(function(e) {
         x = e
-        console.log(x)
+        // console.log(x)
         var uuid = $("#uuid").val();
         var avg_price = $("#avg_price").val();
-        console.log(avg_price, uuid)
-        // $.get('/harvest/strategy/confirm_order/dd6eb1c2-e1eb-4e5f-9635-f48dc72cebca/0/',
-        // uuid = uuid.replace(/-/g,'')
+        // console.log(avg_price, uuid)
         $.get("/harvest/strategy/confirm_order/" + uuid + "/" + avg_price + "/",
             function(data) {
                 console.log("Data Loaded: ", data);

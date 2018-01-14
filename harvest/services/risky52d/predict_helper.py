@@ -124,7 +124,7 @@ def execute():
             per_stk_budget = allocated_amt + profit_earned
             open_ord_qty = round(per_stk_budget / ltp)
             buy_amt = round(ltp * open_ord_qty)
-            log.info('avail_amt:{}, required_amt:{}, stk:{}, ltp:{}, qty :{}'.format(avail_amt, buy_amt, item.stock.stock, ltp, open_ord_qty))
+            log.info('per_stk_budget:{}, avail_amt:{}, required_amt:{}, stk:{}, ltp:{}, qty :{}'.format(per_stk_budget, avail_amt, buy_amt, item.stock.stock, ltp, open_ord_qty))
 
             if avail_amt > buy_amt and open_ord_qty > 0: # buy
                 (x,y,my_order) = signal.open(item, open_ord_qty, ltp)

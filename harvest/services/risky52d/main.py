@@ -9,6 +9,7 @@ import math
 import json
 import collections
 from django.db.models import Q
+from django.utils import timezone
 import logging
 log = logging.getLogger(__name__)
 from django.core.exceptions import ObjectDoesNotExist
@@ -123,7 +124,8 @@ class Risky52D(Base):
     @staticmethod
     def reset():
         strategy = Strategy.objects.get(name='RISKY52D')
-        Ledger.objects.filter(~Q(desc='RISKY52D/CASHIN'),desc__icontains='RISKY52D').delete()
+        Ledger.objects.filter(desc__icontains='RISKY52D').delete()
+        Ledger.objects.create(credit=10000, closing=10000,desc="RISKY52D/CASHIN",strategy=strategy, timestamp=timezone.now())
         Order.objects.filter(signal__watchlist__strategy=strategy).delete()
         Signal.objects.filter(watchlist__strategy=strategy).delete()
         Watchlist.objects.filter(strategy=strategy).delete()
@@ -137,11 +139,18 @@ class Risky52D(Base):
 
         # stk_count = settings.R52D_STK_COUNT
         stk_count = Risky52D.allowed_stock_no()
-        avg_hold_days_atleast = settings.R52D_AVG_HOLD_DAYS_ATLEAST
+        min_avg_hold_days = settings.R52D_AVG_HOLD_DAYS_ATLEAST
+        min_trade_count = settings.R52D_AVG_TRADE_COUNT_ATLEAST
+        max_trade_count = settings.R52D_AVG_TRADE_COUNT_ATMOST
+        min_trade_val = settings.R52D_TURNOVER
         budget_max = settings.R52D_STK_BUDGET_MAX
         budget_min = settings.R52D_STK_BUDGET_MIN
 
-        final_entries = Ndaylow.objects.filter(avg_hold_inter__gte=avg_hold_days_atleast).order_by('-norm_score')[:stk_count]
+        final_entries = Ndaylow.objects.filter(avg_hold_inter__gte=min_avg_hold_days,
+            order_count__gte = min_trade_count,
+            order_count__lte = max_trade_count,
+            avg_trade_val__gte = min_trade_val,).order_by('-norm_score')[:stk_count]
+        print(final_entries)
         # setting allocation 
         i=0
         for item in final_entries:
@@ -161,6 +170,7 @@ class Risky52D(Base):
             stk.save()
         # # add new stocks to table and set status to active
         for item in final_entries:
+            print(item)
             if item.stock.stock in open_stk:
                 stk = Watchlist.objects.get(strategy__name='RISKY52D', stock__stock=item.stock.stock)
                 stk.status = 'ACTIVE'
@@ -192,6 +202,8 @@ class Risky52D(Base):
                         status = 'ACTIVE')
                 except ObjectDoesNotExist as e:
                     log.warn('{} -->  {}'.format(e ,str(item)))
+
+        return {"success":True}
 
     def schedule_task(self):
         pass
