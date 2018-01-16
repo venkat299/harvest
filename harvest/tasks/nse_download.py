@@ -48,7 +48,7 @@ def upload_to_db():
         count = 0
         for item in entries:
             try:
-                stk = Stock.objects.get(stock=item[0], series = item[1])
+                stk = Stock.objects.get(isin =item[12])
                 if stk is not None:
                     timestamp = item[10]
                     stk.open = item[2]
