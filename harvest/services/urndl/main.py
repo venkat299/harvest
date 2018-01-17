@@ -23,9 +23,9 @@ import harvest.services.risky52d.predict_helper as predict_helper
 
 from django.conf import settings
 
-class Risky52D(Base):
+class URNDL(Base):
 
-    _id = 1
+    _id = 2
     _open_type = 'BUY'
 
     # def __init__(self, strategy):
@@ -58,7 +58,7 @@ class Risky52D(Base):
         # """ return list of symbols for which latest eod history is downloaded """
         # mypath = settings.BASE_DIR+ settings.DATA_DIRECTORY+'/eod_hist'
         # # logging.debug(mypath)
-        # return [(p.stem)[4:] for p in pathlib.Path(mypath).iterdir() if p.is_file() and 'NSE-' in p.name and Risky52D.is_file_latest(p)]#[1:30]
+        # return [(p.stem)[4:] for p in pathlib.Path(mypath).iterdir() if p.is_file() and 'NSE-' in p.name and URNDL.is_file_latest(p)]#[1:30]
 
     @staticmethod
     def allowed_stock_no():
@@ -67,13 +67,13 @@ class Risky52D(Base):
         # c.execute('select budget from strategy where strategy="LOW52D"')
         # budget = (c.fetchone())[0]
         # return min(50,int(math.sqrt(budget/10000)*10))
-        return settings.R52D_STK_COUNT
+        return settings.URNDL_STK_COUNT
 
     @staticmethod
     def filter_top_symbols(norm_score_arr):
         """ returns index of top 'x' number of with norm score"""
         logging.debug(norm_score_arr)
-        no_of_stk = Risky52D.allowed_stock_no()
+        no_of_stk = URNDL.allowed_stock_no()
         result = []
 
         if no_of_stk == 0 or len(norm_score_arr) == 0:
@@ -87,12 +87,12 @@ class Risky52D(Base):
     
     @staticmethod
     def open_stk():        
-        open_stk = Signal.objects.filter(watchlist__strategy__name='RISKY52D').exclude(status ='Open').values_list('watchlist__stock__stock', flat=True)
+        open_stk = Signal.objects.filter(watchlist__strategy__name='URNDL').exclude(status ='Open').values_list('watchlist__stock__stock', flat=True)
         return open_stk
 
     @staticmethod
     def curr_stk():  # get list of all stock on watchlist      
-        curr_stk = Watchlist.objects.filter(strategy__name='RISKY52D').values_list('stock__stock', flat=True)
+        curr_stk = Watchlist.objects.filter(strategy__name='URNDL').values_list('stock__stock', flat=True)
         return curr_stk
 
     @staticmethod
@@ -106,26 +106,26 @@ class Risky52D(Base):
         # save to database
         ####
         # strategy
-        t = ('RISKY52D',)
-        stk_ls = Risky52D.get_stk_list()
+        t = ('URNDL',)
+        stk_ls = URNDL.get_stk_list()
         logging.debug(stk_ls)
 
-        if(train_helper.train(stk_ls, 'RISKY52D')):
-            Risky52D.load_into_watchlist()
-        # Risky52D.load_into_watchlist()
+        if(train_helper.train(stk_ls, 'URNDL')):
+            URNDL.load_into_watchlist()
+        # URNDL.load_into_watchlist()
 
         log.info('training completed')
         return {"success": True}
 
     @staticmethod
     def predict():
-        return predict_helper.execute('RISKY52D')
+        return predict_helper.execute('URNDL')
 
     @staticmethod
     def reset():
-        strategy = Strategy.objects.get(name='RISKY52D')
-        Ledger.objects.filter(desc__icontains='RISKY52D').delete()
-        Ledger.objects.create(credit=10000, closing=10000,desc="RISKY52D/CASHIN",strategy=strategy, timestamp=timezone.now())
+        strategy = Strategy.objects.get(name='URNDL')
+        Ledger.objects.filter(desc__icontains='URNDL').delete()
+        Ledger.objects.create(credit=5000, closing=5000,desc="URNDL/CASHIN",strategy=strategy, timestamp=timezone.now())
         Order.objects.filter(signal__watchlist__strategy=strategy).delete()
         Signal.objects.filter(watchlist__strategy=strategy).delete()
         Watchlist.objects.filter(strategy=strategy).delete()
@@ -134,20 +134,20 @@ class Risky52D(Base):
 
     @staticmethod
     def load_into_watchlist():
-        curr_stk = Risky52D.curr_stk()
-        open_stk = Risky52D.open_stk()
+        curr_stk = URNDL.curr_stk()
+        open_stk = URNDL.open_stk()
 
-        # stk_count = settings.R52D_STK_COUNT
-        stk_count = Risky52D.allowed_stock_no()
-        min_avg_hold_days = settings.R52D_AVG_HOLD_DAYS_ATLEAST
-        min_trade_count = settings.R52D_AVG_TRADE_COUNT_ATLEAST
-        max_trade_count = settings.R52D_AVG_TRADE_COUNT_ATMOST
-        min_trade_val = settings.R52D_TURNOVER
-        budget_max = settings.R52D_STK_BUDGET_MAX
-        budget_min = settings.R52D_STK_BUDGET_MIN
+        # stk_count = settings.URNDL_STK_COUNT
+        stk_count = URNDL.allowed_stock_no()
+        min_avg_hold_days = settings.URNDL_AVG_HOLD_DAYS_ATLEAST
+        min_trade_count = settings.URNDL_AVG_TRADE_COUNT_ATLEAST
+        max_trade_count = settings.URNDL_AVG_TRADE_COUNT_ATMOST
+        min_trade_val = settings.URNDL_TURNOVER
+        budget_max = settings.URNDL_STK_BUDGET_MAX
+        budget_min = settings.URNDL_STK_BUDGET_MIN
 
         final_entries = Ndaylow.objects.filter(
-            strategy__name = 'RISKY52D',
+            strategy__name = 'URNDL',
             avg_hold_inter__gte=min_avg_hold_days,
             order_count__gte = min_trade_count,
             order_count__lte = max_trade_count,
@@ -162,19 +162,19 @@ class Risky52D(Base):
 
         # set 'INACTIVE' status to existing stocks which doesn't satisfy the criteria
         for item in curr_stk:
-            stk = Watchlist.objects.get(strategy__name='RISKY52D', stock__stock=item)
+            stk = Watchlist.objects.get(strategy__name='URNDL', stock__stock=item)
             stk.status = 'INACTIVE'
             stk.save()
         # set 'FLUSH' status to open stocks which doesn't satisfy the criteria 
         for item in open_stk:
-            stk = Watchlist.objects.get(strategy__name='RISKY52D', stock__stock=item)
+            stk = Watchlist.objects.get(strategy__name='URNDL', stock__stock=item)
             stk.status = 'INACTIVE'# 'FLUSH'
             stk.save()
         # # add new stocks to table and set status to active
         for item in final_entries:
             print(item)
             if item.stock.stock in open_stk:
-                stk = Watchlist.objects.get(strategy__name='RISKY52D', stock__stock=item.stock.stock)
+                stk = Watchlist.objects.get(strategy__name='URNDL', stock__stock=item.stock.stock)
                 stk.status = 'ACTIVE'
                 stk.norm_score=item.norm_score
                 stk.scores = item.score
@@ -182,7 +182,7 @@ class Risky52D(Base):
                 stk.train_details = str(item) 
                 stk.save()
             elif item.stock.stock in curr_stk:
-                stk = Watchlist.objects.get(strategy__name='RISKY52D', stock__stock=item.stock.stock)
+                stk = Watchlist.objects.get(strategy__name='URNDL', stock__stock=item.stock.stock)
                 stk.status = 'ACTIVE'
                 stk.norm_score=item.norm_score
                 stk.scores = item.score
@@ -193,7 +193,7 @@ class Risky52D(Base):
                 log.debug(item)
                 try:
                     stk = item.stock
-                    strategy = Strategy.objects.get(name='RISKY52D')
+                    strategy = Strategy.objects.get(name='URNDL')
                     # print(item)
                     Watchlist.objects.create(strategy=strategy, stock=stk,
                         norm_score=item.norm_score,

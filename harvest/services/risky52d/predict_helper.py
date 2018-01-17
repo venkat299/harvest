@@ -56,32 +56,36 @@ def stk_open_logic(max_of, min_of, curr):
          
 
 
-def predict(opt):
-    exit = opt.exit
-    status = opt.signal_status
-    ltp = opt.stock.close
-    buy_price = opt.last_transact_price
-    # print((opt.train_details))
-    # print(make_tuple(opt.train_details[12:-1])[4])
-    # print(int(float(make_tuple(opt.train_details[12:-1])[4][1])))
-    n_day = Ndaylow.objects.get(strategy=opt.strategy,stock=opt.stock).n_day_low
+def predict(watchlist):
+    exit = watchlist.exit
+    status = watchlist.signal_status
+    ltp = watchlist.stock.close
+    buy_price = watchlist.last_transact_price
+    # print((watchlist.train_details))
+    # print(make_tuple(watchlist.train_details[12:-1])[4])
+    # print(int(float(make_tuple(watchlist.train_details[12:-1])[4][1])))
+    train_obj = Ndaylow.objects.get(strategy=watchlist.strategy, stock=watchlist.stock)
+    n_day = train_obj.n_day_low
     signal = None
     # possible status [NONE, PENDING_OPEN, OPEN, PENDING_CLOSE, CLOSE]
     # if status not in ['PENDING_OPEN','OPEN','PENDING_CLOSE']:
-    log.debug('applying prediction for stock: {} '.format(opt))
+    log.debug('applying prediction for stock: {} '.format(watchlist))
 
-    symbol =  opt.stock.stock
+    symbol =  watchlist.stock.stock
     (cl_52_min, cl_52_max) = get_cl_nday_max_min(symbol, n_day)
-
+    percent_low  = round(100 * (float(ltp) - cl_52_min)/(cl_52_max - cl_52_min))
+    watchlist.percent_low = percent_low
+    
+    watchlist.save()
 
     if ltp:
         if status == 'CLOSE':
-            # opt contains row
+            # watchlist contains row
             # (strategy,symbol, norm_score,exit,status,eod,buy_price)
             if cl_52_max is None:
                 return None
 
-            if stk_open_logic(cl_52_max, cl_52_min, ltp):  # TODO optimize this margin
+            if stk_open_logic(cl_52_max, cl_52_min, ltp):  # TODO watchlistimize this margin
                 signal = 'BUY'
 
         if status == 'OPEN':
@@ -93,22 +97,22 @@ def predict(opt):
     # if cl_52_max:
     logging.info('comparing close price stock: {} close:{} cl_52_max:{} cl_52_min:{} calc:{} signal:{} value:{} '.format(
             symbol, ltp, cl_52_max, cl_52_min , (((cl_52_max - cl_52_min) * settings.R52D_MARGIN)+ cl_52_min),signal,stk_open_logic(cl_52_max, cl_52_min, ltp)))
-    # logging.debug('prediction result for stock: {} result:{}'.format(opt, signal))
+    # logging.debug('prediction result for stock: {} result:{}'.format(watchlist, signal))
 
     return signal
 
 def get_current_avail(strategy_name):
     return Ledger.objects.filter(strategy__name=strategy_name).latest('timestamp').closing
 
-def execute():
-    # ls  = Watchlist.objects.filter(strategy__name='RISKY52D')
+def execute(strategy_name):
+    # ls  = Watchlist.objects.filter(strategy__name=strategy_name)
     # logging.debug(ls)
 
     logging.debug('in predict.execute()')
-    qs = Watchlist.objects.filter(strategy__name='RISKY52D', status='ACTIVE')
+    qs = Watchlist.objects.filter(strategy__name=strategy_name, status='ACTIVE')
 
     mail_entries=[]
-    avail_amt = get_current_avail('RISKY52D')
+    avail_amt = get_current_avail(strategy_name)
     logging.info(' available_amt : {}'.format(avail_amt))
     for item in qs:
         val = predict(item)
@@ -129,7 +133,7 @@ def execute():
             if avail_amt > buy_amt and open_ord_qty > 0: # buy
                 (x,y,my_order) = signal.open(item, open_ord_qty, ltp)
                 
-                avail_amt = get_current_avail('RISKY52D')
+                avail_amt = get_current_avail(strategy_name)
                 # update mail content
                 mail_entries.append(str(my_order))
             else:
@@ -138,15 +142,12 @@ def execute():
         
         elif val == 'SELL':
             (x,y,my_order) = signal.close(item, ltp)
-            avail_amt = get_current_avail('RISKY52D')
+            avail_amt = get_current_avail(strategy_name)
             # update mail content
             mail_entries.append(str(my_order))
 
-
-
     log.info(mail_entries)
 
-    # conn.commit()
     # if len(mail_entries) > 0:
     #     try:
     #         pass

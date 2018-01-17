@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from harvest.services.risky52d.main import  Risky52D
+from harvest.services.urndl.main import  URNDL
 from harvest.services import order
 
 def train(request, strategy_id):
@@ -8,6 +9,8 @@ def train(request, strategy_id):
 
     if strategy_id is "1":
         response = Risky52D.train()
+    if strategy_id is "2":
+        response = URNDL.train()
 
     final = JsonResponse(response, safe=False)
     print(final)
@@ -18,6 +21,8 @@ def predict(request, strategy_id):
 
     if strategy_id is "1":
         response = Risky52D.predict()
+    if strategy_id is "2":
+        response = URNDL.predict()
 
     final = JsonResponse(response, safe=False)
     return final
@@ -27,6 +32,8 @@ def reset(request, strategy_id):
 
     if strategy_id is "1":
         response = Risky52D.reset()
+    if strategy_id is "2":
+        response = URNDL.reset()
 
     final = JsonResponse(response, safe=False)
     return final

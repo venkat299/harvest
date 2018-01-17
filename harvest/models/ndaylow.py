@@ -17,6 +17,7 @@ class Ndaylow(models.Model):
     score =models.DecimalField(max_digits=10, default=0, decimal_places=6)
     norm_score =models.DecimalField(max_digits=10, default=0, decimal_places=6)
     allocation = models.DecimalField(max_digits=10, default=0, decimal_places=6)
+    # percent_low = models.IntegerField(default=0)
     def __str__(self):
         return self.strategy.name+'/'+self.stock.stock+'/'+str(self.norm_score)+'__'+str(self.allocation)
 

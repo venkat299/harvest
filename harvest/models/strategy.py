@@ -51,6 +51,7 @@ class Watchlist(models.Model):
     signal_status = models.CharField(choices=status_choices, default="CLOSE", max_length=20)
     profit_earned = models.DecimalField(max_digits=20, default=0, decimal_places=2)
     hold_active_days = models.IntegerField(default=0)
+    percent_low = models.IntegerField(default=0)
    
 
     class meta:
