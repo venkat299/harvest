@@ -84,7 +84,7 @@ def train_stock(stock):
         # dt = dt.sort_values(by=['date'])
         # log.debug(dt.head(5))
 
-        # mean_trade_val = round(dt.turnover.mean(),0)
+        mean_trade_val = round(dt.turnover.mean(),0)
         # if mean_trade_val < settings.R52D_TURNOVER:
         #     # pass
         #     raise Exception('low trade volume; skipping stock')
