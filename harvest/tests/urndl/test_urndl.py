@@ -16,6 +16,8 @@ from harvest.models.strategy import Strategy, Stock, Watchlist, Ledger, Order, S
 class StockResource(resources.ModelResource):
     class Meta:
         model = Stock
+        exclude = ('id',)
+        import_id_fields = ('isin',)
 
 def create_strategy(strategy_name):
     return Strategy.objects.create(name=strategy_name, status="ACTIVE")
@@ -30,7 +32,7 @@ def add_stocks_to_watchlist(csv_path):
             stock_resource.import_data(dataset, dry_run=False)  # Actually import now
 
 
-class Risky52D(TestCase):
+class URNDL(TestCase):
 
     def setUp(self):
         pass
@@ -39,10 +41,14 @@ class Risky52D(TestCase):
     def setUpClass(cls):    #refer: https://stackoverflow.com/a/14306659
         # populating tables
         print("populating tables")
-        strategy = create_strategy(strategy_name="RISKY52D")
+        strategy = create_strategy(strategy_name="URNDL")
         add_stocks_to_watchlist(settings.BASE_DIR+ settings.DATA_DIRECTORY+'/eod_sample_1.csv')
-        Ledger.objects.create(credit=20000, closing=20000,desc="RISKY52D/CASHIN",strategy=strategy, timestamp=timezone.now())
-        super(Risky52D, cls).setUpClass()
+        Ledger.objects.create(credit=20000, closing=20000,desc="URNDL/CASHIN",strategy=strategy, timestamp=timezone.now())
+        super(URNDL, cls).setUpClass()
+
+        log.info("\n ======== Strategy ========")
+        for item in Strategy.objects.all():
+            log.info(item)
 
     # def test_strategy_view_with_an_entry(self):
     #     """
@@ -51,9 +57,9 @@ class Risky52D(TestCase):
     #     response = self.client.get(reverse('harvest:strategy'))
     #     self.assertQuerysetEqual(
     #         response.context['user_strategy_list'],
-    #         ['<Strategy: RISKY52D__ACTIVE>']
+    #         ['<Strategy: URNDL__ACTIVE>']
     #     )
-    #     self.assertContains(response, '''>RISKY52D</a>
+    #     self.assertContains(response, '''>URNDL</a>
     #         </td>
     #         <td>ACTIVE</td>''')
 
@@ -65,7 +71,7 @@ class Risky52D(TestCase):
         response = self.client.get(reverse('harvest:strategy_train', kwargs={'strategy_id': 1}))
         self.assertContains(response, '''"success": true''')
         log.info("\n ======== Watchlist ========")
-        for item in Watchlist.objects.filter(strategy__name='RISKY52D'):
+        for item in Watchlist.objects.filter(strategy__name='URNDL'):
             log.info(item)
 
 
@@ -80,29 +86,27 @@ class Risky52D(TestCase):
         response = self.client.get(reverse('harvest:strategy_predict', kwargs={'strategy_id': 1}))
         self.assertContains(response, '''"success": true''')
 
-
         log.info("\n ======== Watchlist ========")
-        for item in Watchlist.objects.filter(strategy__name='RISKY52D'):
+        for item in Watchlist.objects.filter(strategy__name='URNDL'):
             log.info(item)
 
         log.info("\n ======== Signals ========")
-        for item in Signal.objects.filter(watchlist__strategy__name='RISKY52D'):
+        for item in Signal.objects.filter(watchlist__strategy__name='URNDL'):
             log.info(item)
 
-
-        order =Order.objects.get(signal__watchlist__strategy__name='RISKY52D', signal__watchlist__stock__stock='3IINFOTECH', status='PENDING')
+        order =Order.objects.get(signal__watchlist__strategy__name='URNDL', signal__watchlist__stock__stock='3IINFOTECH', status='PENDING')
         uuid = order.uuid
         avg_price = order.price
         response = self.client.get(reverse('harvest:strategy_confirm_order', kwargs={'uuid': uuid, 'avg_price':avg_price}))
         self.assertContains(response, '''"success": true''')
 
-        order =Order.objects.get(signal__watchlist__strategy__name='RISKY52D', signal__watchlist__stock__stock='ASHOKLEY', status='PENDING')
+        order =Order.objects.get(signal__watchlist__strategy__name='URNDL', signal__watchlist__stock__stock='ASHOKLEY', status='PENDING')
         uuid = order.uuid
         avg_price = order.price
         response = self.client.get(reverse('harvest:strategy_confirm_order', kwargs={'uuid': uuid, 'avg_price':avg_price}))
         self.assertContains(response, '''"success": true''')
 
-        uuid = Order.objects.get(signal__watchlist__strategy__name='RISKY52D', signal__watchlist__stock__stock='DABUR', status='PENDING').uuid
+        uuid = Order.objects.get(signal__watchlist__strategy__name='URNDL', signal__watchlist__stock__stock='DABUR', status='PENDING').uuid
         response = self.client.get(reverse('harvest:strategy_cancel_order', kwargs={'uuid': uuid}))
         self.assertContains(response, '''"success": true''')
 
@@ -116,35 +120,35 @@ class Risky52D(TestCase):
         response = self.client.get(reverse('harvest:strategy_predict', kwargs={'strategy_id': 1}))
         self.assertContains(response, '''"success": true''')
 
-        order =Order.objects.get(signal__watchlist__strategy__name='RISKY52D', signal__watchlist__stock__stock='ASHOKLEY', status='PENDING')
+        order =Order.objects.get(signal__watchlist__strategy__name='URNDL', signal__watchlist__stock__stock='ASHOKLEY', status='PENDING')
         uuid = order.uuid
         avg_price = order.price
         response = self.client.get(reverse('harvest:strategy_confirm_order', kwargs={'uuid': uuid, 'avg_price':avg_price}))
         self.assertContains(response, '''"success": true''')
 
-        uuid = Order.objects.get(signal__watchlist__strategy__name='RISKY52D', signal__watchlist__stock__stock='3IINFOTECH', status='PENDING').uuid
+        uuid = Order.objects.get(signal__watchlist__strategy__name='URNDL', signal__watchlist__stock__stock='3IINFOTECH', status='PENDING').uuid
         response = self.client.get(reverse('harvest:strategy_cancel_order', kwargs={'uuid': uuid}))
         self.assertContains(response, '''"success": true''')
 
         #prematurly closing a signal 
-        watchlist_id1= Watchlist.objects.get(stock=stock_1, strategy__name='RISKY52D').id
+        watchlist_id1= Watchlist.objects.get(stock=stock_1, strategy__name='URNDL').id
         response = self.client.get(reverse('harvest:close_signal', kwargs={'watchlist_id': watchlist_id1}))
         self.assertContains(response, '''"success": true''')
 
         log.info("\n ======== Watchlist ========")
-        for item in Watchlist.objects.filter(strategy__name='RISKY52D'):
+        for item in Watchlist.objects.filter(strategy__name='URNDL'):
             log.info(item)
 
         log.info("\n ======== Signals ========")
-        for item in Signal.objects.filter(watchlist__strategy__name='RISKY52D'):
+        for item in Signal.objects.filter(watchlist__strategy__name='URNDL'):
             log.info(item)
 
         log.info("\n ======== Order ========")
-        for item in Order.objects.filter(signal__watchlist__strategy__name='RISKY52D'):
+        for item in Order.objects.filter(signal__watchlist__strategy__name='URNDL'):
             log.info(item)
 
         log.info("\n ======== Ledger ========")
-        for item in Ledger.objects.filter(strategy__name='RISKY52D'):
+        for item in Ledger.objects.filter(strategy__name='URNDL'):
             log.info(item)
 
     

@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import harvest, strategy, tasks, risky52d
+from .views import harvest, strategy, tasks, risky52d, urndl
 app_name = 'harvest'
 urlpatterns = [
     # ex: /strategy/
@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^ledger/pull_fund/(?P<strategy_id>[0-9a-f-]+)/(?P<amt>\d+\.\d{2})/$', harvest.pull_fund, name='pull_fund'),
 
     url(r'^strategy/risky52d/reload_watchlist/$', risky52d.reload_watchlist, name='risky_52d_reload_watchlist'),
+    url(r'^strategy/urndl/reload_watchlist/$', urndl.reload_watchlist, name='urndl_reload_watchlist'),
 
     url(r'^tasks/nse_eod_download/$', tasks.download_latest_eod, name='nse_eod_download')
 ]

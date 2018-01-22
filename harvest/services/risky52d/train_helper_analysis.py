@@ -27,10 +27,10 @@ conn_db = sqlite3.connect(settings.HIST_DB, check_same_thread = False)
 dirpath = settings.BASE_DIR+ settings.DATA_DIRECTORY+'/eod_hist'
 # log.debug('name, buy_date ,sell_date,buy, sell, sno, order_id, margin, hold_days, return_per_day, median_turnover, n_day_low, size')
 
-def train(stock_list):
+def train(stock_list, strategy_name):
 
     ## clearing ndaylow table
-    strategy = Strategy.objects.get(name='RISKY52D')
+    strategy = Strategy.objects.get(name=strategy_name)
     Ndaylow.objects.filter(strategy=strategy).delete()
 
     ls = []
@@ -84,7 +84,7 @@ def train_stock(stock):
         # dt = dt.sort_values(by=['date'])
         # log.debug(dt.head(5))
 
-        # mean_trade_val = round(dt.turnover.mean(),0)
+        mean_trade_val = round(dt.turnover.mean(),0)
         # if mean_trade_val < settings.R52D_TURNOVER:
         #     # pass
         #     raise Exception('low trade volume; skipping stock')

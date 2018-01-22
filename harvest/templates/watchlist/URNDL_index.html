@@ -38,7 +38,7 @@
         <button class="ui teal manage_fund button">Manage Fund</button>
     </div>
     <div class="item"></div>
-   <!--  <div class="item">
+    <!--  <div class="item">
         <button data-action="watchlist reload_watchlist" class="ui teal watchlist reload_watchlist button">Reload Watchlist</button>
     </div> -->
 </div>
@@ -52,6 +52,7 @@
             <th>Score</th>
             <th>Re. Profit</th>
             <th>Unreal. Gain</th>
+            <th>Percent Low</th>
             <th>Gain Trend</th>
             <th>Close Signal</th>
         </tr>
@@ -61,12 +62,12 @@
         <tr>
             <td> {{ stock.stock.stock }} </td>
             <td> {{ stock.signal_status }} </td>
-            <td> {{ stock.status }}</td>
+            <td> {{ stock.status }} </td>
             <td> {{ stock.exit }} </td>
-            <td> {{ stock.norm_score}}</td>
-            <td> {{ stock.profit_earned }}</td>
-            <td> {{ stock.unreal_gain}}</td>
-             <td>
+            <td> {{ stock.norm_score}} </td>
+            <td> {{ stock.profit_earned }} </td>
+            <td> {{ stock.unreal_gain}} </td>
+            <td>
                 <meter min="0" low="25" high="75.1" optimum="0.01" max="100" value="{{ stock.percent_low}}">
                 </meter> {{ stock.percent_low}}
             </td>
@@ -121,7 +122,7 @@ $.fn.api.settings.api = {
     'watchlist signal_close': '/harvest/signal/close/{watchlist_id}'
 };
 
-$('.signal_close.button').api({onSuccess: console.log});
+$('.signal_close.button').api({ onSuccess: console.log });
 
 $(document).ready(function() {
     $(function() {
@@ -140,8 +141,8 @@ $(document).ready(function() {
         $('.ui.modal').modal('hide')
     })
     $(".confirm_order").click(function(e) {
-        x = e
-        console.log(x)
+        // x = e
+        // console.log(x)
         var type = $("#fund_type").val();
         var amount = $("#amt").val();
         var strategy_id = $("#strategy_id").val();
@@ -165,5 +166,12 @@ $(document).ready(function() {
 .PENDING_CLOSE_hide,
 .PENDING_OPEN_hide {
     display: none;
+}
+
+.v_meter {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 </style>
