@@ -11,20 +11,21 @@ from datetime import datetime
 from pytz import timezone
 from ast import literal_eval as make_tuple
 
-import logging
+
+from django.conf import settings
+logging.basicConfig(level=settings.LOG_LEVEL)
+log = logging.getLogger(__name__)
+
  
 # import quandl
 
-# logging.basicConfig(level=logging.DEBUG, filename="logfile.log",filemode="a+",format="%(message)s")
+# log.basicConfig(level=log.DEBUG, filename="logfile.log",filemode="a+",format="%(message)s")
 from datetime import datetime
 from django.db.models import Prefetch
 from django.conf import settings
 from harvest.models.strategy import Strategy, Stock, Watchlist, Signal, Order, Ledger
 from harvest.models.ndaylow import Ndaylow
 from harvest.services import signal, ledger
-
-
-log = logging.getLogger(__name__)
 
 dbpath = settings.BASE_DIR+'/'+settings.HIST_DB
 
@@ -48,7 +49,7 @@ def get_cl_nday_max_min(symbol, n_day):
 
 def stk_open_logic(max_of, min_of, curr):
     # band = max_of - min_of
-    # logging.debug('comparing price  curr:{} cl_52_min:{} cl_52_max:{} calc:{} signal:{} '.format(
+    # log.debug('comparing price  curr:{} cl_52_min:{} cl_52_max:{} calc:{} signal:{} '.format(
     #          curr, min_of, max_of, 
     #          ((max_of - min_of) * settings.R52D_MARGIN)+ min_of,
     #          curr <= ((max_of - min_of) * settings.R52D_MARGIN)+ min_of))
@@ -95,9 +96,9 @@ def predict(watchlist):
         log.warn('problem ltp is none')
 
     # if cl_52_max:
-    logging.info('comparing close price stock: {} close:{} cl_52_max:{} cl_52_min:{} calc:{} signal:{} value:{} '.format(
+    log.info('comparing close price stock: {} close:{} cl_52_max:{} cl_52_min:{} calc:{} signal:{} value:{} '.format(
             symbol, ltp, cl_52_max, cl_52_min , (((cl_52_max - cl_52_min) * settings.R52D_MARGIN)+ cl_52_min),signal,stk_open_logic(cl_52_max, cl_52_min, ltp)))
-    # logging.debug('prediction result for stock: {} result:{}'.format(watchlist, signal))
+    # log.debug('prediction result for stock: {} result:{}'.format(watchlist, signal))
 
     return signal
 
@@ -106,21 +107,21 @@ def get_current_avail(strategy_name):
 
 def execute(strategy_name):
     # ls  = Watchlist.objects.filter(strategy__name=strategy_name)
-    # logging.debug(ls)
+    # log.debug(ls)
 
-    logging.debug('in predict.execute()')
+    log.debug('in predict.execute()')
     qs = Watchlist.objects.filter(strategy__name=strategy_name, status='ACTIVE')
 
     mail_entries=[]
     avail_amt = get_current_avail(strategy_name)
-    logging.info(' available_amt : {}'.format(avail_amt))
+    log.info(' available_amt : {}'.format(avail_amt))
     for item in qs:
         val = predict(item)
         exit = item.exit
         status = item.signal_status
         ltp = item.stock.close
         buy_price = item.last_transact_price
-        logging.debug(val)
+        log.debug(val)
         
         if val == 'BUY':
             allocated_amt = Ndaylow.objects.get(stock=item.stock, strategy=item.strategy).allocation
