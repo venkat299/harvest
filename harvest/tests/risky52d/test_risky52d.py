@@ -16,6 +16,8 @@ from harvest.models.strategy import Strategy, Stock, Watchlist, Ledger, Order, S
 class StockResource(resources.ModelResource):
     class Meta:
         model = Stock
+        exclude = ('id',)
+        import_id_fields = ('isin',)
 
 def create_strategy(strategy_name):
     return Strategy.objects.create(name=strategy_name, status="ACTIVE")
@@ -27,6 +29,7 @@ def add_stocks_to_watchlist(csv_path):
         with open(csv_path) as new_stocks:
         # new_stocks = settings.BASE_DIR+'/harvest/test_data/eod_sample.csv'
             imported_data = dataset.load(new_stocks.read())
+            # print(imported_data)
             stock_resource.import_data(dataset, dry_run=False)  # Actually import now
 
 
@@ -40,6 +43,7 @@ class Risky52D(TestCase):
         # populating tables
         print("populating tables")
         strategy = create_strategy(strategy_name="RISKY52D")
+        print("completed populating tables")
         add_stocks_to_watchlist(settings.BASE_DIR+ settings.DATA_DIRECTORY+'/eod_sample_1.csv')
         Ledger.objects.create(credit=20000, closing=20000,desc="RISKY52D/CASHIN",strategy=strategy, timestamp=timezone.now())
         super(Risky52D, cls).setUpClass()
