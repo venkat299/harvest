@@ -52,6 +52,7 @@ class Watchlist(models.Model):
     profit_earned = models.DecimalField(max_digits=20, default=0, decimal_places=2)
     hold_active_days = models.IntegerField(default=0)
     percent_low = models.IntegerField(default=0)
+    allocation = models.DecimalField(max_digits=10, default=0, decimal_places=6)
    
 
     class meta:

@@ -124,7 +124,7 @@ def execute(strategy_name):
         log.debug(val)
         
         if val == 'BUY':
-            allocated_amt = Ndaylow.objects.get(stock=item.stock, strategy=item.strategy).allocation
+            allocated_amt = item.allocation
             profit_earned = item.profit_earned
             per_stk_budget = allocated_amt + profit_earned
             open_ord_qty = round(per_stk_budget / ltp)

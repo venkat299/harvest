@@ -147,12 +147,12 @@ class URNDL(Base):
         budget_min = settings.URNDL_STK_BUDGET_MIN
 
         final_entries = Ndaylow.objects.filter(
-            strategy__name = 'URNDL',
+            # strategy__name = 'URNDL',
             avg_hold_inter__gte=min_avg_hold_days,
             order_count__gte = min_trade_count,
             order_count__lte = max_trade_count,
             avg_trade_val__gte = min_trade_val,).order_by('-norm_score')[:stk_count]
-        print(final_entries)
+        log.debug(final_entries)
         # setting allocation 
         i=0
         for item in final_entries:
@@ -171,8 +171,9 @@ class URNDL(Base):
             stk.status = 'INACTIVE'# 'FLUSH'
             stk.save()
         # # add new stocks to table and set status to active
+        i=0
         for item in final_entries:
-            print(item)
+            log.debug(item)
             if item.stock.stock in open_stk:
                 stk = Watchlist.objects.get(strategy__name='URNDL', stock__stock=item.stock.stock)
                 stk.status = 'ACTIVE'
@@ -180,6 +181,7 @@ class URNDL(Base):
                 stk.scores = item.score
                 stk.exit = item.margin
                 stk.train_details = str(item) 
+                stk.allocation =budget_min+((stk_count-i)*(budget_max-budget_min)/stk_count)
                 stk.save()
             elif item.stock.stock in curr_stk:
                 stk = Watchlist.objects.get(strategy__name='URNDL', stock__stock=item.stock.stock)
@@ -188,23 +190,25 @@ class URNDL(Base):
                 stk.scores = item.score
                 stk.exit = item.margin
                 stk.train_details = str(item)
+                stk.allocation =budget_min+((stk_count-i)*(budget_max-budget_min)/stk_count)
                 stk.save()
             else:
                 log.debug(item)
                 try:
                     stk = item.stock
                     strategy = Strategy.objects.get(name='URNDL')
-                    # print(item)
+                    # log.debug(item)
                     Watchlist.objects.create(strategy=strategy, stock=stk,
                         norm_score=item.norm_score,
                         score = item.score,
                         exit = item.margin,
                         #n_day = item.n_day_low,
                         train_details = str(item),
+                        allocation =budget_min+((stk_count-i)*(budget_max-budget_min)/stk_count)
                         status = 'ACTIVE')
                 except ObjectDoesNotExist as e:
                     log.warn('{} -->  {}'.format(e ,str(item)))
-
+            i=i+1
         return {"success":True}
 
     def schedule_task(self):

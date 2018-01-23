@@ -67,7 +67,8 @@ def train(stock_list, strategy_name):
             return_per_day=item.return_per_day,
             score=item.score,
             norm_score=item.norm_score,
-            allocation=float(item.allocation))
+            # allocation=float(item.allocation)
+            )
 
     return True
 
