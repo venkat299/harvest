@@ -31,7 +31,7 @@ def train(stock_list, strategy_name):
 
     ## clearing ndaylow table
     strategy = Strategy.objects.get(name=strategy_name)
-    Ndaylow.objects.filter(strategy=strategy).delete()
+    Ndaylow.objects.all().delete()
 
     ls = []
     with concurrent.futures.ProcessPoolExecutor() as executor:
@@ -56,7 +56,7 @@ def train(stock_list, strategy_name):
     # log.debug(result)
     for item in result.itertuples():
         # add entry into database
-        Ndaylow.objects.create(strategy=strategy,
+        Ndaylow.objects.create(
             stock=Stock.objects.get(stock=item.symbol,series='EQ'),
             avg_hold_inter=item.avg_hold_inter,
             avg_trade_val=item.avg_trade_val,

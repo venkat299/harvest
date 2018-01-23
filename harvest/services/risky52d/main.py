@@ -147,7 +147,6 @@ class Risky52D(Base):
         budget_min = settings.R52D_STK_BUDGET_MIN
 
         final_entries = Ndaylow.objects.filter(
-            strategy__name = 'RISKY52D',
             avg_hold_inter__gte=min_avg_hold_days,
             order_count__gte = min_trade_count,
             order_count__lte = max_trade_count,
@@ -199,7 +198,7 @@ class Risky52D(Base):
                         exit = item.margin,
                         #n_day = item.n_day_low,
                         train_details = str(item),
-                        allocation =budget_min+((stk_count-i)*(budget_max-budget_min)/stk_count)
+                        allocation =budget_min+((stk_count-i)*(budget_max-budget_min)/stk_count),
                         status = 'ACTIVE')
                 except ObjectDoesNotExist as e:
                     log.warn('{} -->  {}'.format(e ,str(item)))

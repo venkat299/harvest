@@ -65,7 +65,7 @@ def predict(watchlist):
     # print((watchlist.train_details))
     # print(make_tuple(watchlist.train_details[12:-1])[4])
     # print(int(float(make_tuple(watchlist.train_details[12:-1])[4][1])))
-    train_obj = Ndaylow.objects.get(strategy=watchlist.strategy, stock=watchlist.stock)
+    train_obj = Ndaylow.objects.get(stock=watchlist.stock)
     n_day = train_obj.n_day_low
     signal = None
     # possible status [NONE, PENDING_OPEN, OPEN, PENDING_CLOSE, CLOSE]

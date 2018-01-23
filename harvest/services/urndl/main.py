@@ -204,7 +204,7 @@ class URNDL(Base):
                         exit = item.margin,
                         #n_day = item.n_day_low,
                         train_details = str(item),
-                        allocation =budget_min+((stk_count-i)*(budget_max-budget_min)/stk_count)
+                        allocation =budget_min+((stk_count-i)*(budget_max-budget_min)/stk_count),
                         status = 'ACTIVE')
                 except ObjectDoesNotExist as e:
                     log.warn('{} -->  {}'.format(e ,str(item)))
