@@ -16,7 +16,7 @@ from harvest.models.strategy import Strategy, Stock, Watchlist, Ledger, Order, S
 class StockResource(resources.ModelResource):
     class Meta:
         model = Stock
-        exclude = ('id',)
+        exclude = ('id',) #refer: https://stackoverflow.com/questions/45028975/django-import-export-cannot-exclude-id-field-during-import-keyerror-uid
         import_id_fields = ('isin',)
 
 def create_strategy(strategy_name):
